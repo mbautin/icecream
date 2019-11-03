@@ -8,7 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v1
-
       - uses: docker://yugabytedb/yb_build_infra_centos7:v2019-09-01T14_58_09_mbautin
+      - uses: actions/checkout@v1
+      - run: |
+          cat /etc/issue
+          pwd
+          ls -l
+          ./autogen.sh
+          ./configure
+          make
+        
 
