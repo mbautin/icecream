@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
-          docker run yugabytedb/yb_build_infra_centos7:v2019-09-01T14_58_09_mbautin \
+          docker run \
             --mount type=bind,source=$PWD,target=/home/yugabyte-ci/icecream \
+            yugabytedb/yb_build_infra_centos7:v2019-09-01T14_58_09_mbautin \
             bash -c 'set -euxo pipefail; id; pwd; ./autogen.sh && ./configure && make'
