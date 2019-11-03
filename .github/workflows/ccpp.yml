@@ -8,12 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v1
-    - name: configure
-      run: ./autogen.sh && ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+      - uses: actions/checkout@v1
+
+      - uses: docker://yugabytedb/yb_build_infra_centos7:v2019-09-01T14_58_09_mbautin
+
