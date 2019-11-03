@@ -8,14 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: docker://yugabytedb/yb_build_infra_centos7:v2019-09-01T14_58_09_mbautin
       - uses: actions/checkout@v1
       - run: |
-          cat /etc/issue
-          pwd
-          ls -l
-          ./autogen.sh
-          ./configure
-          make
-        
-
+          docker run yugabytedb/yb_build_infra_centos7:v2019-09-01T14_58_09_mbautin \
+            --mount type=bind,source=$PWD,target=/home/yugabyte-ci/icecream \
+            bash -c 'set -euxo pipefail; id; pwd; ./autogen.sh && ./configure && make'
