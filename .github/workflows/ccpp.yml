@@ -13,4 +13,8 @@ jobs:
           docker run \
             --mount type=bind,source=$PWD,target=/home/yugabyte-ci/code/icecream \
             yugabytedb/yb_build_infra_centos7:v2019-09-01T14_58_09_mbautin \
-            bash -c 'set -euxo pipefail; id; pwd; sudo -u yugabyte-ci bash -c "cd /home/yugabyte-ci/code/icecream && ./autogen.sh && ./configure && make"'
+            bash -c 'set -euxo pipefail; \
+                     id; \
+                     pwd; \
+                     sudo chown -R yugabyte-ci /home/yugabyte-ci/code/icecream; \
+                     sudo -u yugabyte-ci bash -c "cd /home/yugabyte-ci/code/icecream && ./autogen.sh && ./configure && make"'
